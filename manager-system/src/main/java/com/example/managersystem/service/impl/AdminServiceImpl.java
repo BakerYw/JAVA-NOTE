@@ -1,10 +1,8 @@
 package com.example.managersystem.service.impl;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.managersystem.common.result.PageBean;
 import com.example.managersystem.entity.Admin;
+import com.example.managersystem.entity.Role;
 import com.example.managersystem.mapper.AdminMapper;
 import com.example.managersystem.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +34,8 @@ public class AdminServiceImpl implements AdminService{
         PageBean<Admin> pageBean = new PageBean<>((Integer) paramMap.get("pageno"),(Integer) paramMap.get("pagesize"));
         Integer startIndex = pageBean.getStartIndex();
         paramMap.put("startIndex",startIndex);
-        List<Admin> datas = adminMapper.selectByMap(paramMap);
+        List<Admin> datas = adminMapper.queryList(paramMap);
         pageBean.setDatas(datas);
-        Integer totalsize = adminMapper.queryCount(paramMap);
-        pageBean.setTotalsize(totalsize);
         return pageBean;
     }
 
@@ -60,7 +56,7 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public int editByAdmin(Admin admin) {
-        return adminMapper.update(admin,null);
+        return adminMapper.updateById(admin);
     }
 
     @Override

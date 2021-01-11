@@ -10,6 +10,7 @@ import com.example.managersystem.entity.Admin;
 import com.example.managersystem.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ import java.util.Map;
  * @author cheese
  * @since 2021-01-06
  */
-@RestController
+@Controller
 @RequestMapping("/manager")
 public class AdminController {
     @Autowired
@@ -39,7 +40,7 @@ public class AdminController {
      * 跳转管理员页面
      * @return
      */
-    @GetMapping("/admin")
+    @RequestMapping("/admin")
     public String admin(){
         return "manager/admin/adminList";
     }

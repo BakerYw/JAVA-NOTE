@@ -56,55 +56,49 @@ public class TreeMenuServiceImpl implements TreeMenuService{
 
     @Override
     public TreeMenu selectById(Integer id) {
-        return treeMenuMapper.selectById(id);
+        return treeMenuMapper.selectByid(id);
     }
 
     @Override
     public TreeMenu selectByName(String name) {
-        QueryWrapper<TreeMenu> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name",name);
-        return treeMenuMapper.selectOne(queryWrapper);
+        return treeMenuMapper.selectByName(name);
     }
 
     @Override
     public TreeMenu selectByUrl(String url) {
-        QueryWrapper<TreeMenu> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("url",url);
-        return treeMenuMapper.selectOne(queryWrapper);
+        return treeMenuMapper.selectByUrl(url);
     }
 
     @Override
     public int editByPermission(TreeMenu treeMenu) {
-        return treeMenuMapper.update(treeMenu,null);
+        return treeMenuMapper.editByPermission(treeMenu);
     }
 
     @Override
     public int insertPermission(TreeMenu treeMenu) {
-        return 0;
+        return treeMenuMapper.insertPermission(treeMenu);
     }
 
     @Override
     public int delByPermissionIds(List<Integer> ids) {
-        return 0;
+        treeMenuMapper.delRolePermission(ids);
+        return treeMenuMapper.delByPermissionIds(ids);
     }
 
     @Override
     public List<TreeMenu> selectByPid(Integer id) {
-        Map<String,Object> map=new HashMap<>();
-        map.put("pid",id);
-        return treeMenuMapper.selectByMap(map);
+        return treeMenuMapper.selectByPid(id);
     }
 
     @Override
     public List<TreeMenu> selectByRoleId(Integer id) {
-        Map<String,Object> map=new HashMap<>();
-        map.put("rid",id);
-        return treeMenuMapper.selectByMap(map);
+        return treeMenuMapper.selectByRoleId(id);
     }
 
     @Override
     public int updateRolePermission(List<Integer> ids, Integer id) {
-        return 0;
+        treeMenuMapper.delRolePermissionByRid(id);
+        return treeMenuMapper.updateRolePermission(ids,id);
     }
 
 

@@ -21,6 +21,29 @@ import java.util.Map;
  */
 public interface AdminMapper extends BaseMapper<Admin> {
 
+
+    @Select("<script>" +
+            " select admin.*,role.name as roleName from admin,role WHERE " +
+            " admin.rid = role.id"+
+            " <if test=\"username!=null\"> " +
+            " and admin.username LIKE concat(\"%\",#{username},\"%\") " +
+            "</if>" +
+            "<if test=\"email!=null\">" +
+            " and admin.email = #{email} " +
+            "</if>" +
+            "<if test=\"phone!=null\">" +
+            " and admin.phone = #{phone} " +
+            "</if>" +
+            "<if test=\"rid!=null\">" +
+            " and admin.rid = #{rid} " +
+            "</if>" +
+            " limit #{startIndex},#{pagesize}"+
+            "</script>")
+    List<Admin> queryList(Map<String, Object> paramMap);
+
+
+
+
     @Select("select * from admin where username = #{username}")
     @Results({
             @Result(id = true, property = "id",column = "id"),
@@ -30,7 +53,4 @@ public interface AdminMapper extends BaseMapper<Admin> {
     Admin findByName(String username);
 
 
-
-
-    Integer queryCount(Map<String, Object> paramMap);
 }

@@ -9,6 +9,7 @@ import com.example.managersystem.config.ReloadSecuritySource;
 import com.example.managersystem.entity.Role;
 import com.example.managersystem.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ import java.util.Map;
  * @author cheese
  * @since 2021-01-06
  */
-@RestController
+@Controller
 @RequestMapping("/manager")
 public class RoleController {
     @Autowired

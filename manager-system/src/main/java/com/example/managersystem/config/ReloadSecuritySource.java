@@ -29,7 +29,7 @@ public class ReloadSecuritySource {
 
     public void getReloadSecuritySource(){
         Map<RequestMatcher, Collection<ConfigAttribute>> map = new HashMap<>();
-        for(TreeMenu m : treeMenuMapper.selectList(null)){
+        for(TreeMenu m : treeMenuMapper.selectAll()){
             if(!StringUtils.isEmpty(m.getUrl())){
                 AntPathRequestMatcher matcher = new AntPathRequestMatcher(m.getUrl());
                 ArrayList<ConfigAttribute> configs = new ArrayList<>();

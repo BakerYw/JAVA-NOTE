@@ -1,6 +1,7 @@
 package com.example.managersystem.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class TreeMenu implements Serializable {
     private Boolean checked = false;
 
     //添加元素
+    @TableField(exist = false)
     private List<TreeMenu> children = new ArrayList<>();
 
 }

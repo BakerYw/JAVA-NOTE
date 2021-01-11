@@ -33,13 +33,13 @@ public class LogServiceImpl implements LogService{
     @Override
     public PageBean<Log> queryPage(Map<String, Object> paramMap) {
         PageBean<Log> pageBean = new PageBean<>((Integer) paramMap.get("pageno"),(Integer) paramMap.get("pagesize"));
+
         Integer startIndex = pageBean.getStartIndex();
         paramMap.put("startIndex",startIndex);
-        List<Log> datas = logMapper.selectByMap(paramMap);
+        List<Log> datas = logMapper.queryList(paramMap);
         pageBean.setDatas(datas);
-        QueryWrapper<Log> queryWrapper = new QueryWrapper<>();
-        queryWrapper.allEq(paramMap);
-        Integer totalsize = logMapper.selectCount(queryWrapper);
+
+        Integer totalsize = logMapper.queryCount(paramMap);
         pageBean.setTotalsize(totalsize);
         return pageBean;
     }

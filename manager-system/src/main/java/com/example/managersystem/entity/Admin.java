@@ -1,6 +1,8 @@
 package com.example.managersystem.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.util.Collection;
@@ -46,8 +48,10 @@ public class Admin implements Serializable, UserDetails {
     private String createtime;
 
     //添加元素
+    @TableField(exist = false)
     private String roleName;
 
+    @TableField(exist = false)
     private List<Role> roles;
 
 

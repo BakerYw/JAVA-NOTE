@@ -39,13 +39,13 @@ public class RoleServiceImpl  implements RoleService {
     @Override
     public PageBean<Role> queryPage(Map<String, Object> paramMap) {
         PageBean<Role> pageBean = new PageBean<>((Integer) paramMap.get("pageno"),(Integer) paramMap.get("pagesize"));
+
         Integer startIndex = pageBean.getStartIndex();
         paramMap.put("startIndex",startIndex);
-        List<Role> datas = roleMapper.selectByMap(paramMap);
+        List<Role> datas = roleMapper.queryList(paramMap);
         pageBean.setDatas(datas);
-        QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
-        queryWrapper.allEq(paramMap);
-        Integer totalsize = roleMapper.selectCount(queryWrapper);
+
+        Integer totalsize = roleMapper.queryCount(paramMap);
         pageBean.setTotalsize(totalsize);
         return pageBean;
     }
@@ -75,7 +75,7 @@ public class RoleServiceImpl  implements RoleService {
 
     @Override
     public int editByRole(Role role) {
-        return roleMapper.update(role,null);
+        return roleMapper.updateById(role);
     }
 
     @Override
